@@ -16,46 +16,49 @@ from model import db, Human, Animal
 def q1():
     """Return the human with the id 2."""
 
-    return # Write your query here
+    # select human-object from humans where id = 2 (primary key)
+
+    return Human.query.get(2)
 
 
 def q2():
     """Return the FIRST animal with the species 'fish'."""
 
-    return # Write your query here
+    return Animal.query.filter(Animal.animal_species == 'fish').first()
 
 
 def q3():
     """Return all animals that were born after 2015.
 
+
     Do NOT include animals without birth years.
     """
 
-    return # Write your query here
+    return Animal.query.filter(Animal.birth_year > 2015).all()
 
 
 def q4():
     """Return the humans with first names that start with 'J'."""
 
-    return # Write your query here
+    return Human.query.filter(Human.fname.like('J%')).all()
 
 
 def q5():
     """Return all animals whose birth years are NULL in the database."""
 
-    return # Write your query here
+    return Animal.query.filter(Animal.birth_year == None).all()
 
 
-def q4():
+def q6():
     """Return all animals whose species is 'fish' OR 'rabbit'."""
 
-    return # Write your query here
+    return Animal.query.filter(Animal.animal_species.in_(['rabbit', 'fish'])).all()
 
 
-def q5():
+def q7():
     """Return all humans whose email addresses do NOT contain 'gmail'."""
 
-    return # Write your query here
+    return Human.query.filter(db.not_(Human.email.like('%gmail%'))).all()
 
 
 ##############################################################################
