@@ -83,7 +83,6 @@ def print_directory():
     """Prints out all humans in the humans table, along with their animals 
     and their species"""
 
-    # Replace this with your code
     for human in Human.query.all():
         print(human.fname, human.lname)
         for animal in human.animals:
@@ -95,9 +94,16 @@ def print_directory():
 #    that species.
 
 def find_humans_by_animal_species(species):
-    """Replace this with a good docstring."""
+    """Given an animal species, return a list of humans that have animals
+    of that species"""
 
     # Replace this with your code
+    owners = []
+
+    for animal in Animal.query.filter(Animal.animal_species == species):
+        owners.append(animal.human)
+
+    return owners
 
 
 if __name__ == "__main__":
