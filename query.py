@@ -80,9 +80,14 @@ def q7():
 #           Animal name (animal species)
 
 def print_directory():
-    """Replace this with a good docstring."""
+    """Prints out all humans in the humans table, along with their animals 
+    and their species"""
 
     # Replace this with your code
+    for human in Human.query.all():
+        print(human.fname, human.lname)
+        for animal in human.animals:
+            print('\t', animal.name, ('(' + animal.animal_species + ')'))
 
 
 # 2. Write a function, find_humans_by_animal_species, which takes in an animal
