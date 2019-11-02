@@ -20,11 +20,19 @@ class Human(db.Model):
     __tablename__ = "humans"
 
     # Define your columns and/or relationships here
+    human_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    fname = db.Column(db.String(25), nullable=False)
+    lname = db.Column(db.String(25), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+
+    animals = db.relationship('Animal', backref='human')
+
 
     def __repr__(self):
         """Return a human-readable representation of a Human."""
 
         # Finish this __repr__ method
+        return f"<Human human_id={self.human_id} email={self.email}>"
 
 
 class Animal(db.Model):
@@ -33,11 +41,18 @@ class Animal(db.Model):
     __tablename__ = "animals"
 
     # Define your columns and/or relationships here
+    animal_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    human_id = db.Column(db.Integer, db.ForeignKey('humans.human_id'), nullable=False)
+    name = db.Column(db.String(50), nullable=False)
+    animal_species = db.Column(db.String(25), nullable=False)
+    birth_year = db.Column(db.Integer)
+
 
     def __repr__(self):
         """Return a human-readable representation of a Human."""
 
         # Finish this __repr__ method
+        return f"<Animal animal_id={self.animal_id} name={self.name}>"
 
 
 ##############################################################################
